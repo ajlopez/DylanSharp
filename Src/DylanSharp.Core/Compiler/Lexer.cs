@@ -23,7 +23,7 @@
             if (this.position >= this.length)
                 return null;
 
-            Token token = new Token(TokenType.Name, this.text);
+            Token token = new Token(TokenType.Name, this.text.Trim());
 
             this.position = this.length;
 
