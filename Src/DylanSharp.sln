@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DylanSharp.Core", "DylanSharp.Core\DylanSharp.Core.csproj", "{8301768D-0576-4098-B5A8-3167C753934D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DylanSharp.Core.Tests", "DylanSharp.Core.Tests\DylanSharp.Core.Tests.csproj", "{D2AFB130-FD3C-445F-8CA0-E884C47DF53F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2AA945E7-CC16-4E1C-AB27-28BF803BDE56}"
+	ProjectSection(SolutionItems) = preProject
+		DylanSharp.vsmdi = DylanSharp.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DylanSharp.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8301768D-0576-4098-B5A8-3167C753934D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8301768D-0576-4098-B5A8-3167C753934D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8301768D-0576-4098-B5A8-3167C753934D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8301768D-0576-4098-B5A8-3167C753934D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AFB130-FD3C-445F-8CA0-E884C47DF53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AFB130-FD3C-445F-8CA0-E884C47DF53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AFB130-FD3C-445F-8CA0-E884C47DF53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AFB130-FD3C-445F-8CA0-E884C47DF53F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
