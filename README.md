@@ -10,3 +10,8 @@ Work in Progress
 - [An introduction to Dylan](http://opendylan.org/documentation/intro-dylan/index.html)
 - [Dylan Documentation](http://opendylan.org/documentation/index.html)
 - [Dylan Cheat Sheet](http://opendylan.org/documentation/cheatsheet.html)
+- [Expressions](http://opendylan.org/books/drm/Expressions)
+- [Modules](http://opendylan.org/books/drm/Modules)
+- [The Built-In Classes](http://opendylan.org/books/drm/Built-In_Classes)
+- [The Built-In Functions](http://opendylan.org/books/drm/Built-In_Functions)
+
