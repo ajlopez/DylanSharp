@@ -39,6 +39,26 @@
         }
 
         [TestMethod]
+        public void GetTwoNames()
+        {
+            Lexer lexer = new Lexer("first second");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.Type);
+            Assert.AreEqual("first", token.Value);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.Type);
+            Assert.AreEqual("second", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetInteger()
         {
             Lexer lexer = new Lexer("123");
@@ -48,6 +68,40 @@
             Assert.IsNotNull(token);
             Assert.AreEqual(TokenType.Integer, token.Type);
             Assert.AreEqual("123", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetIntegerWithSpaces()
+        {
+            Lexer lexer = new Lexer("   123    ");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Integer, token.Type);
+            Assert.AreEqual("123", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetTwoIntegers()
+        {
+            Lexer lexer = new Lexer("123 456");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Integer, token.Type);
+            Assert.AreEqual("123", token.Value);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Integer, token.Type);
+            Assert.AreEqual("456", token.Value);
 
             Assert.IsNull(lexer.NextToken());
         }
