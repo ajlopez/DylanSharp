@@ -20,14 +20,38 @@
 
         public Token NextToken()
         {
+            while (this.position < this.length && char.IsWhiteSpace(this.text[this.position]))
+                this.position++;
+
             if (this.position >= this.length)
                 return null;
 
-            Token token = new Token(TokenType.Name, this.text.Trim());
+            char ch = this.text[this.position++];
 
-            this.position = this.length;
+            if (char.IsDigit(ch))
+                return this.NextInteger(ch);
 
-            return token;
+            return this.NextName(ch);
+        }
+
+        private Token NextName(char ch)
+        {
+            string value = ch.ToString();
+
+            while (this.position < this.length && !char.IsWhiteSpace(this.text[this.position]))
+                value += this.text[this.position++];
+
+            return new Token(TokenType.Name, value);
+        }
+
+        private Token NextInteger(char ch)
+        {
+            string value = ch.ToString();
+
+            while (this.position < this.length && char.IsDigit(this.text[this.position]))
+                value += this.text[this.position++];
+
+            return new Token(TokenType.Integer, value);
         }
     }
 }
