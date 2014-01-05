@@ -7,6 +7,9 @@
 
     public class Lexer
     {
+        private static string punctuations = ";";
+        private static string[] operators = { "=" };
+
         private string text;
         private int length;
         private int position;
@@ -30,6 +33,12 @@
 
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
+
+            if (punctuations.Contains(ch))
+                return new Token(TokenType.Punctuation, ch.ToString());
+
+            if (operators.Contains(ch.ToString()))
+                return new Token(TokenType.Operator, ch.ToString());
 
             return this.NextName(ch);
         }

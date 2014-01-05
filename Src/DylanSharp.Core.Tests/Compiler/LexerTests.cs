@@ -25,6 +25,20 @@
         }
 
         [TestMethod]
+        public void GetNameWithHyphen()
+        {
+            Lexer lexer = new Lexer("shoe-size");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.Type);
+            Assert.AreEqual("shoe-size", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetNameWithSpaces()
         {
             Lexer lexer = new Lexer("  name   ");
@@ -102,6 +116,34 @@
             Assert.IsNotNull(token);
             Assert.AreEqual(TokenType.Integer, token.Type);
             Assert.AreEqual("456", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetSemicolonAsPunctuation()
+        {
+            Lexer lexer = new Lexer(";");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Punctuation, token.Type);
+            Assert.AreEqual(";", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetEqualAsOperator()
+        {
+            Lexer lexer = new Lexer("=");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Operator, token.Type);
+            Assert.AreEqual("=", token.Value);
 
             Assert.IsNull(lexer.NextToken());
         }
