@@ -147,5 +147,27 @@
 
             Assert.IsNull(lexer.NextToken());
         }
+
+        [TestMethod]
+        public void SkipLineComment()
+        {
+            Lexer lexer = new Lexer("  // a comment");
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetNameAfterSkipLineComment()
+        {
+            Lexer lexer = new Lexer("  // a comment\r\nfoo");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.Type);
+            Assert.AreEqual("foo", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }
