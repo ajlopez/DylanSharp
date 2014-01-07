@@ -11,45 +11,21 @@
     public class LexerTests
     {
         [TestMethod]
-        public void GetName()
+        public void GetSimpleName()
         {
-            Lexer lexer = new Lexer("name");
-
-            Token token = lexer.NextToken();
-
-            Assert.IsNotNull(token);
-            Assert.AreEqual(TokenType.Name, token.Type);
-            Assert.AreEqual("name", token.Value);
-
-            Assert.IsNull(lexer.NextToken());
+            this.GetName("name");
         }
 
         [TestMethod]
         public void GetNameWithHyphen()
         {
-            Lexer lexer = new Lexer("shoe-size");
-
-            Token token = lexer.NextToken();
-
-            Assert.IsNotNull(token);
-            Assert.AreEqual(TokenType.Name, token.Type);
-            Assert.AreEqual("shoe-size", token.Value);
-
-            Assert.IsNull(lexer.NextToken());
+            this.GetName("shoe-size");
         }
 
         [TestMethod]
         public void GetNameWithSpaces()
         {
-            Lexer lexer = new Lexer("  name   ");
-
-            Token token = lexer.NextToken();
-
-            Assert.IsNotNull(token);
-            Assert.AreEqual(TokenType.Name, token.Type);
-            Assert.AreEqual("name", token.Value);
-
-            Assert.IsNull(lexer.NextToken());
+            this.GetName("  name   ");
         }
 
         [TestMethod]
@@ -166,6 +142,29 @@
             Assert.IsNotNull(token);
             Assert.AreEqual(TokenType.Name, token.Type);
             Assert.AreEqual("foo", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetNameWithSpecialCharacters()
+        {
+            this.GetName("*name*");
+            this.GetName("shoe-size");
+            this.GetName("insert!");
+            this.GetName("empty?");
+            this.GetName("$constant");
+        }
+
+        private void GetName(string name)
+        {
+            Lexer lexer = new Lexer(name);
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.Type);
+            Assert.AreEqual(name.Trim(), token.Value);
 
             Assert.IsNull(lexer.NextToken());
         }
