@@ -1,0 +1,87 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-1909188913">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="ContextTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:10:23</timestamp>
+    <milliseconds>519</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LexerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>01/07/2014 07:22:49</timestamp>
+    <milliseconds>33</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AddExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:11</timestamp>
+    <milliseconds>742</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConstantExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:18</timestamp>
+    <milliseconds>853</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DivideExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:04</timestamp>
+    <milliseconds>26</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MultiplyExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:04</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SubtractExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:04</timestamp>
+    <milliseconds>6</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 17:06:19</timestamp>
+    <milliseconds>267</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="VariableExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>12/24/2013 17:11:00</timestamp>
+      <milliseconds>849</milliseconds>
+    </settings>
+    <timestamp>12/24/2013 18:15:03</timestamp>
+    <milliseconds>995</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
