@@ -49,6 +49,7 @@
     <Compile Include="ContextTests.cs" />
     <Compile Include="Expressions\AddExpressionTests.cs" />
     <Compile Include="Expressions\ConstantExpressionTests.cs" />
+    <Compile Include="Expressions\AssignExpressionTests.cs" />
     <Compile Include="Expressions\DivideExpressionTests.cs" />
     <Compile Include="Expressions\LetExpressionTests.cs" />
     <Compile Include="Expressions\MultiplyExpressionTests.cs" />
