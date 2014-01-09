@@ -23,6 +23,10 @@
         public object Evaluate(Context context)
         {
             var value = this.expression.Evaluate(context);
+
+            if (!context.HasValue(this.name))
+                throw new InvalidOperationException(string.Format("Undefined variable '{0}'", this.name));
+
             context.SetValue(this.name, value);
             return value;
         }
