@@ -45,6 +45,11 @@
 
             return false;
         }
+
+        public bool HasLocalValue(string name)
+        {
+            return this.values.ContainsKey(name);
+        }
     }
 }
 

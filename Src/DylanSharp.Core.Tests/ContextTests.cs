@@ -41,5 +41,20 @@
             Assert.AreEqual(1, context.GetValue("one"));
             Assert.IsNull(context.GetValue("two"));
         }
+
+        [TestMethod]
+        public void HasLocalValue()
+        {
+            Context parent = new Context();
+            Context context = new Context(parent);
+
+            parent.SetValue("one", 1);
+            context.SetValue("two", 2);
+
+            Assert.IsTrue(parent.HasLocalValue("one"));
+            Assert.IsFalse(context.HasLocalValue("one"));
+            Assert.IsTrue(context.HasLocalValue("two"));
+            Assert.IsFalse(parent.HasLocalValue("two"));
+        }
     }
 }
