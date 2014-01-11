@@ -8,11 +8,12 @@
     public class Lexer
     {
         private static string punctuations = ";";
-        private static string[] operators = { "=" };
+        private static string[] operators = { "=", "==", ":=" };
 
         private string text;
         private int length;
         private int position;
+        private Stack<char?> chars = new Stack<char?>();
 
         public Lexer(string text)
         {
@@ -23,7 +24,7 @@
 
         public Token NextToken()
         {
-            char? next = this.NextChar();
+            char? next = this.NextCharSkippingWhiteSpaces();
 
             if (!next.HasValue)
                 return null;
@@ -36,19 +37,49 @@
             if (punctuations.Contains(ch))
                 return new Token(TokenType.Punctuation, ch.ToString());
 
+            if (operators.Any(op => op.Length == 2 && op[0] == ch))
+            {
+                next = this.NextChar();
+
+                if (next.HasValue)
+                {
+                    string newvalue = ch.ToString() + next.Value.ToString();
+
+                    if (operators.Contains(newvalue))
+                        return new Token(TokenType.Operator, newvalue);
+
+                    this.PushChar(next);
+                }
+            }
+
             if (operators.Contains(ch.ToString()))
                 return new Token(TokenType.Operator, ch.ToString());
 
             return this.NextName(ch);
         }
 
+        private void PushChar(char? ch)
+        {
+            this.chars.Push(ch);
+        }
+
+        private char? NextCharSkippingWhiteSpaces()
+        {
+            char? ch;
+
+            for (ch = this.NextChar(); ch.HasValue && char.IsWhiteSpace(ch.Value); )
+                ch = this.NextChar();
+
+            return ch;
+        }
+
         private char? NextChar()
         {
+            if (this.chars.Count > 0)
+                return this.chars.Pop();
+
             while (true)
             {
-                while (this.position < this.length && char.IsWhiteSpace(this.text[this.position]))
-                    this.position++;
-
                 if (this.position >= this.length)
                     return null;
 
