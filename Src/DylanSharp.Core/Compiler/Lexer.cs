@@ -31,6 +31,9 @@
 
             char ch = next.Value;
 
+            if (ch == '\'' || ch == '"')
+                return this.NextString(ch);
+
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
 
@@ -105,6 +108,19 @@
                 value += this.text[this.position++];
 
             return new Token(TokenType.Name, value);
+        }
+
+        private Token NextString(char delimiter)
+        {
+            string value = string.Empty;
+
+            while (this.position < this.length && this.text[this.position] != delimiter)
+                value += this.text[this.position++];
+
+            if (this.position < this.length)
+                this.position++;
+
+            return new Token(TokenType.String, value);
         }
 
         private Token NextInteger(char ch)

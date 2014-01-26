@@ -218,6 +218,34 @@
             this.GetName("$constant");
         }
 
+        [TestMethod]
+        public void GetSimpleSingleQuotedString()
+        {
+            Lexer lexer = new Lexer("'foo'");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.String, token.Type);
+            Assert.AreEqual("foo", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetSimpleDoubleQuotedString()
+        {
+            Lexer lexer = new Lexer("\"foo\"");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.String, token.Type);
+            Assert.AreEqual("foo", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
         private void GetName(string name)
         {
             Lexer lexer = new Lexer(name);
