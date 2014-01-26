@@ -14,4 +14,6 @@ Work in Progress
 - [Modules](http://opendylan.org/books/drm/Modules)
 - [The Built-In Classes](http://opendylan.org/books/drm/Built-In_Classes)
 - [The Built-In Functions](http://opendylan.org/books/drm/Built-In_Functions)
-
+- [The Dylan Reference Manual](http://opendylan.org/books/drm/Title)
+- [Dylan Programm](http://opendylan.org/books/dpg/index.html)
+- [Dylan Programming: Functions](http://opendylan.org/books/dpg/func.html)

@@ -21,5 +21,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseVariableExpression()
+        {
+            Parser parser = new Parser("foo");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(VariableExpression));
+            Assert.AreEqual("foo", ((VariableExpression)result).Name);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

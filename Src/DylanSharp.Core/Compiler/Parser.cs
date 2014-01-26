@@ -26,6 +26,9 @@
             if (token.Type == TokenType.Integer)
                 return new ConstantExpression(int.Parse(token.Value, CultureInfo.InvariantCulture));
 
+            if (token.Type == TokenType.Name)
+                return new VariableExpression(token.Value);
+
             throw new NotImplementedException();
         }
     }

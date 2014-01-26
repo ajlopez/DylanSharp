@@ -55,6 +55,7 @@
     <Compile Include="Expressions\MultiplyExpression.cs" />
     <Compile Include="Expressions\SubtractExpression.cs" />
     <Compile Include="Expressions\VariableExpression.cs" />
+    <Compile Include="Language\List.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
