@@ -63,5 +63,21 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void OperatorRaiseNotImplementedException() 
+        {
+            Parser parser = new Parser("::");
+
+            try
+            {
+                parser.ParseExpression();
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(NotImplementedException));
+            }
+        }
     }
 }

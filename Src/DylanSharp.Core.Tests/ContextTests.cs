@@ -40,6 +40,18 @@
         }
 
         [TestMethod]
+        public void SetAndGetTypeInParent()
+        {
+            Context parent = new Context();
+
+            parent.SetType("name", "string");
+
+            Context context = new Context(parent);
+
+            Assert.AreEqual("string", context.GetType("name"));
+        }
+
+        [TestMethod]
         public void HasValue()
         {
             Context context = new Context();

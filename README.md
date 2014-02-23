@@ -17,3 +17,4 @@ Work in Progress
 - [The Dylan Reference Manual](http://opendylan.org/books/drm/Title)
 - [Dylan Programm](http://opendylan.org/books/dpg/index.html)
 - [Dylan Programming: Functions](http://opendylan.org/books/dpg/func.html)
+- [Dylan Syntax](http://rigaux.org/language-study/syntax-across-languages-per-language/Dylan.html)
