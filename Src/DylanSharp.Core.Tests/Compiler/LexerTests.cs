@@ -233,6 +233,34 @@
         }
 
         [TestMethod]
+        public void GetSimpleType()
+        {
+            Lexer lexer = new Lexer("<car>");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Type, token.Type);
+            Assert.AreEqual("car", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void GetTypeOperator()
+        {
+            Lexer lexer = new Lexer("::");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Operator, token.Type);
+            Assert.AreEqual("::", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetSimpleDoubleQuotedString()
         {
             Lexer lexer = new Lexer("\"foo\"");

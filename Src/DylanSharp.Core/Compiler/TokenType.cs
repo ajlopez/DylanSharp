@@ -11,6 +11,7 @@
         Integer,
         String,
         Operator,
-        Punctuation
+        Punctuation,
+        Type
     }
 }

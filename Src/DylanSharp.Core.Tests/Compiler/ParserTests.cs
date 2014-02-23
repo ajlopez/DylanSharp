@@ -23,6 +23,34 @@
         }
 
         [TestMethod]
+        public void ParseSingleQuotedString()
+        {
+            Parser parser = new Parser("'foo'");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ConstantExpression));
+            Assert.AreEqual("foo", ((ConstantExpression)result).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseDoubleQuotedString()
+        {
+            Parser parser = new Parser("\"foo\"");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ConstantExpression));
+            Assert.AreEqual("foo", ((ConstantExpression)result).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseVariableExpression()
         {
             Parser parser = new Parser("foo");

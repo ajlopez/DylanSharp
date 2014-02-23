@@ -8,12 +8,12 @@
     public class Lexer
     {
         private static string punctuations = ";";
-        private static string[] operators = { "=", "==", ":=" };
+        private static string[] operators = { "=", "==", ":=", "::" };
 
         private string text;
         private int length;
         private int position;
-        private Stack<char?> chars = new Stack<char?>();
+        private Stack<char> chars = new Stack<char>();
 
         public Lexer(string text)
         {
@@ -33,6 +33,14 @@
 
             if (ch == '\'' || ch == '"')
                 return this.NextString(ch);
+
+            if (ch == '<')
+            {
+                var nch = this.PeekChar();
+
+                if (nch.HasValue && char.IsLetter(nch.Value))
+                    return this.NextType();
+            }
 
             if (char.IsDigit(ch))
                 return this.NextInteger(ch);
@@ -63,7 +71,8 @@
 
         private void PushChar(char? ch)
         {
-            this.chars.Push(ch);
+            if (ch.HasValue)
+                this.chars.Push(ch.Value);
         }
 
         private char? NextCharSkippingWhiteSpaces()
@@ -74,6 +83,17 @@
                 ch = this.NextChar();
 
             return ch;
+        }
+
+        private char? PeekChar()
+        {
+            if (this.chars.Count > 0)
+                return this.chars.Peek();
+
+            if (this.position + 1 >= this.length)
+                return null;
+
+            return this.text[this.position + 1];
         }
 
         private char? NextChar()
@@ -108,6 +128,19 @@
                 value += this.text[this.position++];
 
             return new Token(TokenType.Name, value);
+        }
+
+        private Token NextType()
+        {
+            string value = string.Empty;
+
+            while (this.position < this.length && this.text[this.position] != '>')
+                value += this.text[this.position++];
+
+            if (this.position < this.length)
+                this.position++;
+
+            return new Token(TokenType.Type, value.Trim());
         }
 
         private Token NextString(char delimiter)
