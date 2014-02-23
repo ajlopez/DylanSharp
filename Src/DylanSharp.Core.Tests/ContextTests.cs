@@ -20,6 +20,26 @@
         }
 
         [TestMethod]
+        public void GetUndefinedType()
+        {
+            Context context = new Context();
+
+            context.SetValue("one", 1);
+
+            Assert.IsNull(context.GetType("one"));
+        }
+
+        [TestMethod]
+        public void SetAndGetType()
+        {
+            Context context = new Context();
+
+            context.SetType("name", "string");
+
+            Assert.AreEqual("string", context.GetType("name"));
+        }
+
+        [TestMethod]
         public void HasValue()
         {
             Context context = new Context();

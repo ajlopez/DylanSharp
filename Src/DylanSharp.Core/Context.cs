@@ -8,6 +8,7 @@
     public class Context
     {
         private IDictionary<string, object> values = new Dictionary<string, object>();
+        private IDictionary<string, string> types = new Dictionary<string, string>();
         private Context parent;
 
         public Context()
@@ -49,6 +50,28 @@
         public bool HasLocalValue(string name)
         {
             return this.values.ContainsKey(name);
+        }
+
+        public string GetType(string name)
+        {
+            if (this.values.ContainsKey(name))
+                if (this.types.ContainsKey(name))
+                    return this.types[name];
+                else
+                    return null;
+
+            if (this.parent != null)
+                return this.parent.GetType(name);
+
+            return null;
+        }
+
+        public void SetType(string name, string type)
+        {
+            this.types[name] = type;
+
+            if (!this.values.ContainsKey(name))
+                this.values[name] = null;
         }
     }
 }
