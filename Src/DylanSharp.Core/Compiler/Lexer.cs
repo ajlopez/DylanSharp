@@ -79,7 +79,7 @@
         {
             char? ch;
 
-            for (ch = this.NextChar(); ch.HasValue && char.IsWhiteSpace(ch.Value); )
+            for (ch = this.NextChar(); ch.HasValue && char.IsWhiteSpace(ch.Value);)
                 ch = this.NextChar();
 
             return ch;

@@ -16,7 +16,7 @@
             this.expression = expression;
         }
 
-        public String Name { get { return this.name; } }
+        public string Name { get { return this.name; } }
 
         public IExpression Expression { get { return this.expression; } }
 
