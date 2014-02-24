@@ -18,3 +18,5 @@ Work in Progress
 - [Dylan Programm](http://opendylan.org/books/dpg/index.html)
 - [Dylan Programming: Functions](http://opendylan.org/books/dpg/func.html)
 - [Dylan Syntax](http://rigaux.org/language-study/syntax-across-languages-per-language/Dylan.html)
+- [Old: Fundamental numeric type designator classes](http://old.opendylan.org/documentation/opendylan/interop1/inter_19.htm)
+

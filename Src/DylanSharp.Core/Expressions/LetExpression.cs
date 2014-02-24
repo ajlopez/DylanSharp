@@ -8,15 +8,19 @@
     public class LetExpression : IExpression
     {
         private string name;
+        private string typename;
         private IExpression expression;
 
-        public LetExpression(string name, IExpression expression)
+        public LetExpression(string name, string typename, IExpression expression)
         {
             this.name = name;
+            this.typename = typename;
             this.expression = expression;
         }
 
         public string Name { get { return this.name; } }
+
+        public string TypeName { get { return this.typename; } }
 
         public IExpression Expression { get { return this.expression; } }
 
