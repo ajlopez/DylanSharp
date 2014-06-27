@@ -79,5 +79,26 @@
                 Assert.IsInstanceOfType(ex, typeof(NotImplementedException));
             }
         }
+
+        [TestMethod]
+        public void ParseLetExpression()
+        {
+            Parser parser = new Parser("let x = 1");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(LetExpression));
+
+            var lexpr = (LetExpression)result;
+
+            Assert.AreEqual("x", lexpr.Name);
+            Assert.AreEqual(null, lexpr.TypeName);
+            Assert.IsNotNull(lexpr.Expression);
+            Assert.IsInstanceOfType(lexpr.Expression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)lexpr.Expression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
