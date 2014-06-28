@@ -10,6 +10,7 @@
     public class Parser
     {
         private Lexer lexer;
+        private Stack<Token> tokens = new Stack<Token>();
 
         public Parser(string text)
         {
@@ -18,7 +19,20 @@
 
         public IExpression ParseExpression()
         {
-            var token = this.lexer.NextToken();
+            var expr = this.ParseSimpleExpression();
+
+            if (expr == null)
+                return null;
+
+            if (expr is VariableExpression && this.TryParseToken(TokenType.Operator, ":="))
+                return new AssignExpression(((VariableExpression)expr).Name, this.ParseExpression());
+
+            return expr;
+        }
+
+        private IExpression ParseSimpleExpression()
+        {
+            var token = this.NextToken();
 
             if (token == null)
                 return null;
@@ -53,7 +67,7 @@
 
         private string ParseName()
         {
-            var token = this.lexer.NextToken();
+            var token = this.NextToken();
 
             if (token == null || token.Type != TokenType.Name)
                 throw new ParserException("Name expected");
@@ -63,10 +77,38 @@
 
         private void ParseToken(TokenType type, string value)
         {
-            var token = this.lexer.NextToken();
+            var token = this.NextToken();
 
             if (token == null || token.Type != type || token.Value != value)
                 throw new ParserException(string.Format("Expected '{0}'", token.Value));
+        }
+
+        private bool TryParseToken(TokenType type, string value)
+        {
+            var token = this.NextToken();
+
+            if (token == null)
+                return false;
+
+            if (token.Type == type && token.Value == value)
+                return true;
+
+            this.PushToken(token);
+
+            return false;
+        }
+
+        private Token NextToken()
+        {
+            if (this.tokens.Count > 0)
+                return this.tokens.Pop();
+
+            return this.lexer.NextToken();
+        }
+
+        private void PushToken(Token token)
+        {
+            this.tokens.Push(token);
         }
     }
 }

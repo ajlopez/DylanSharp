@@ -100,5 +100,25 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseAssignExpression()
+        {
+            Parser parser = new Parser("x := 1");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(AssignExpression));
+
+            var aexpr = (AssignExpression)result;
+
+            Assert.AreEqual("x", aexpr.Name);
+            Assert.IsNotNull(aexpr.Expression);
+            Assert.IsInstanceOfType(aexpr.Expression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)aexpr.Expression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
