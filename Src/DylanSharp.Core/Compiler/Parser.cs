@@ -57,12 +57,26 @@
         private LetExpression ParseLetExpression()
         {
             string name = this.ParseName();
+            string typename = null;
+
+            if (this.TryParseToken(TokenType.Operator, "::"))
+                typename = this.ParseTypeName();
 
             this.ParseToken(TokenType.Operator, "=");
 
             IExpression expr = this.ParseExpression();
 
-            return new LetExpression(name, null, expr);
+            return new LetExpression(name, typename, expr);
+        }
+
+        private string ParseTypeName()
+        {
+            var token = this.NextToken();
+
+            if (token == null || token.Type != TokenType.Type)
+                throw new ParserException("Type name expected");
+
+            return token.Value;
         }
 
         private string ParseName()

@@ -102,6 +102,27 @@
         }
 
         [TestMethod]
+        public void ParseLetExpressionWithType()
+        {
+            Parser parser = new Parser("let x :: <integer> = 1");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(LetExpression));
+
+            var lexpr = (LetExpression)result;
+
+            Assert.AreEqual("x", lexpr.Name);
+            Assert.AreEqual("integer", lexpr.TypeName);
+            Assert.IsNotNull(lexpr.Expression);
+            Assert.IsInstanceOfType(lexpr.Expression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)lexpr.Expression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAssignExpression()
         {
             Parser parser = new Parser("x := 1");
