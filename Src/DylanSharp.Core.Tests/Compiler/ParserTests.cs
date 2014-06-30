@@ -23,6 +23,29 @@
         }
 
         [TestMethod]
+        public void ParseAddExpression()
+        {
+            Parser parser = new Parser("123+456");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(AddExpression));
+
+            var aexpr = (AddExpression)result;
+
+            Assert.IsNotNull(aexpr.LeftExpression);
+            Assert.IsNotNull(aexpr.RightExpression);
+            Assert.IsInstanceOfType(aexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(aexpr.RightExpression, typeof(ConstantExpression));
+
+            Assert.AreEqual(123, ((ConstantExpression)aexpr.LeftExpression).Value);
+            Assert.AreEqual(456, ((ConstantExpression)aexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSingleQuotedString()
         {
             Parser parser = new Parser("'foo'");

@@ -27,6 +27,9 @@
             if (expr is VariableExpression && this.TryParseToken(TokenType.Operator, ":="))
                 return new AssignExpression(((VariableExpression)expr).Name, this.ParseExpression());
 
+            if (this.TryParseToken(TokenType.Operator, "+"))
+                return new AddExpression(expr, this.ParseExpression());
+
             return expr;
         }
 
