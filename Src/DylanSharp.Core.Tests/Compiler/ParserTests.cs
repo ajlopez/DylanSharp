@@ -46,6 +46,29 @@
         }
 
         [TestMethod]
+        public void ParseSubtractExpression()
+        {
+            Parser parser = new Parser("123-456");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(SubtractExpression));
+
+            var sexpr = (SubtractExpression)result;
+
+            Assert.IsNotNull(sexpr.LeftExpression);
+            Assert.IsNotNull(sexpr.RightExpression);
+            Assert.IsInstanceOfType(sexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(sexpr.RightExpression, typeof(ConstantExpression));
+
+            Assert.AreEqual(123, ((ConstantExpression)sexpr.LeftExpression).Value);
+            Assert.AreEqual(456, ((ConstantExpression)sexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSingleQuotedString()
         {
             Parser parser = new Parser("'foo'");
