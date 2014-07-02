@@ -69,6 +69,29 @@
         }
 
         [TestMethod]
+        public void ParseMultiplyExpression()
+        {
+            Parser parser = new Parser("123 * 456");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(MultiplyExpression));
+
+            var mexpr = (MultiplyExpression)result;
+
+            Assert.IsNotNull(mexpr.LeftExpression);
+            Assert.IsNotNull(mexpr.RightExpression);
+            Assert.IsInstanceOfType(mexpr.LeftExpression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(mexpr.RightExpression, typeof(ConstantExpression));
+
+            Assert.AreEqual(123, ((ConstantExpression)mexpr.LeftExpression).Value);
+            Assert.AreEqual(456, ((ConstantExpression)mexpr.RightExpression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSingleQuotedString()
         {
             Parser parser = new Parser("'foo'");

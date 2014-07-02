@@ -8,7 +8,7 @@
     public class Lexer
     {
         private static string punctuations = ";";
-        private static string[] operators = { "=", "==", ":=", "::", "<", ">", "<=", ">=", "+", "-" };
+        private static string[] operators = { "=", "==", ":=", "::", "<", ">", "<=", ">=", "+", "-", "*" };
 
         private string text;
         private int length;
@@ -64,7 +64,12 @@
             }
 
             if (operators.Contains(ch.ToString()))
-                return new Token(TokenType.Operator, ch.ToString());
+            {
+                next = this.PeekChar();
+
+                if (!next.HasValue || !char.IsLetter(next.Value))
+                    return new Token(TokenType.Operator, ch.ToString());
+            }
 
             return this.NextName(ch);
         }
