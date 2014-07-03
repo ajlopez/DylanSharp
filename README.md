@@ -20,3 +20,6 @@ Work in Progress
 - [Dylan Syntax](http://rigaux.org/language-study/syntax-across-languages-per-language/Dylan.html)
 - [Old: Fundamental numeric type designator classes](http://old.opendylan.org/documentation/opendylan/interop1/inter_19.htm)
 
+## To Do
+
+- Better name detection in lexer

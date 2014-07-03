@@ -33,6 +33,8 @@
                 return new SubtractExpression(expr, this.ParseExpression());
             if (this.TryParseToken(TokenType.Operator, "*"))
                 return new MultiplyExpression(expr, this.ParseExpression());
+            if (this.TryParseToken(TokenType.Operator, "/"))
+                return new DivideExpression(expr, this.ParseExpression());
 
             return expr;
         }
