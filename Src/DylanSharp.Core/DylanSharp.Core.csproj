@@ -50,6 +50,7 @@
     <Compile Include="Expressions\BinaryExpression.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\AssignExpression.cs" />
+    <Compile Include="Expressions\IdentityExpression.cs" />
     <Compile Include="Expressions\DivideExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\LetExpression.cs" />
