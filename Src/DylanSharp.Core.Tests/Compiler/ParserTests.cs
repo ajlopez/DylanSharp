@@ -215,6 +215,48 @@
         }
 
         [TestMethod]
+        public void ParseDefineExpression()
+        {
+            Parser parser = new Parser("define x = 1");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DefineExpression));
+
+            var dexpr = (DefineExpression)result;
+
+            Assert.AreEqual("x", dexpr.Name);
+            Assert.AreEqual(null, dexpr.TypeName);
+            Assert.IsNotNull(dexpr.Expression);
+            Assert.IsInstanceOfType(dexpr.Expression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)dexpr.Expression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseDefineExpressionWithType()
+        {
+            Parser parser = new Parser("define x :: <integer> = 1");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DefineExpression));
+
+            var dexpr = (DefineExpression)result;
+
+            Assert.AreEqual("x", dexpr.Name);
+            Assert.AreEqual("integer", dexpr.TypeName);
+            Assert.IsNotNull(dexpr.Expression);
+            Assert.IsInstanceOfType(dexpr.Expression, typeof(ConstantExpression));
+            Assert.AreEqual(1, ((ConstantExpression)dexpr.Expression).Value);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAssignExpression()
         {
             Parser parser = new Parser("x := 1");

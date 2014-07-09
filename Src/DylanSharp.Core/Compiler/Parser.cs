@@ -56,6 +56,8 @@
             {
                 if (token.Value == "let")
                     return this.ParseLetExpression();
+                if (token.Value == "define")
+                    return this.ParseDefineExpression();
 
                 return new VariableExpression(token.Value);
             }
@@ -76,6 +78,21 @@
             IExpression expr = this.ParseExpression();
 
             return new LetExpression(name, typename, expr);
+        }
+
+        private DefineExpression ParseDefineExpression()
+        {
+            string name = this.ParseName();
+            string typename = null;
+
+            if (this.TryParseToken(TokenType.Operator, "::"))
+                typename = this.ParseTypeName();
+
+            this.ParseToken(TokenType.Operator, "=");
+
+            IExpression expr = this.ParseExpression();
+
+            return new DefineExpression(name, typename, expr);
         }
 
         private string ParseTypeName()
